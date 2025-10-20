@@ -1,5 +1,5 @@
 if not _G.deweldblock then
-  loadstring(game:HttpGet("https://github.com/Veko-Studio/PCEOS-FUNCTIONS/blob/main/function_deweldblock.luau"))()
+  loadstring(game:HttpGet("github.com/Veko-Studio/PCEOS-FUNCTIONS/blob/main/function_deweldblock.luau"))()
 end
 repeat task.wait() until _G.deweldblock
 function _G.deweldaircraft()
