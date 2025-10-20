@@ -82,6 +82,9 @@ function _G.deweldblock(block1,block2)
 		if model1==model2 then return end
 		if not (model1 and model2) then return end
 		if not (model1:IsA("Model") and model2:IsA("Model")) then return end
+		if model1.Parent ~= model2.Parent then return end
+		if model1.Parent.Name ~= game.Players.LocalPlayer.Name .. " Aircraft" then return end
+		if model1.Parent.Parent ~= workspace then return end
 		if (model1.PrimaryPart.Position - model2.PrimaryPart.Position).Magnitude >= 8 then return end
 		if model1:FindFirstChild("MainWeld", true) and not deweldblacklist[model1.Name] then
 			print("1",model1:FindFirstChild("MainWeld", true):GetFullName())
@@ -101,3 +104,4 @@ function _G.deweldblock(block1,block2)
 	end)
 	print(success and "" or result)
 end
+--_G.deweldblock(block1,block2)
