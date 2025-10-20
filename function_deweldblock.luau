@@ -76,7 +76,7 @@ local function recreateWelds(weldPairs)
 end
 
 
-function _G.deweldblock(block1,block2)
+function _G.deweldblock(model1,model2)
 	local success, result = pcall(function()
 	for i=1,2 do
 		if model1==model2 then return end
