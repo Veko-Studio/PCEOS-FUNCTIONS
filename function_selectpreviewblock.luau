@@ -7,6 +7,7 @@ end
 
 _G.selectpreviewblock(BlockID)
   local ID = BlockID
+  game:GetService("Players").LocalPlayer.PlayerGui.BuildGui.EnableBuilding:Fire()
   if checkstatus(ID) then setblock(ID) end
   if checkstatus(ID) then setblock2(ID) end
 end
