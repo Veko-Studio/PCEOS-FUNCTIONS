@@ -58,7 +58,7 @@ if workspacemt then
     
     setreadonly(workspacemt, true)
 end
-_G.positionpreviewblock(world_vec)
+local function _G.positionpreviewblock(world_vec)
     pceos_mousepos = world_vec
 end
 --_G.positionpreviewblock(world_vec)
