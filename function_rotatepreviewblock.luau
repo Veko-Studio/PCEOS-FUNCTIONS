@@ -11,6 +11,11 @@ function _G.rotatepreviewblock(cframe)
     if not preview then return end
     ---main code
     for i=1,2 do --loop since it needs to run twice to get to the correct rotation for some reason
+        ---already correct rot check
+        local _, _, previewRot = preview.PrimaryPart.CFrame:ToOrientation()
+        local _, _, targetRot = cframe:ToOrientation()
+        local tolerance = math.rad(1)
+        if math.abs(previewRot - targetRot) <= tolerance then return end
         ---getting preview rotation
         local previewpivot = preview.PrimaryPart.CFrame * cframe:Inverse() --adding cframe offset so that it goes to the needed rotation instead of 0 0 0
         local preview_rot_x,preview_rot_y,preview_rot_z = previewpivot:ToOrientation()
