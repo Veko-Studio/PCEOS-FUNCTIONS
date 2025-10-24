@@ -1,3 +1,10 @@
+_G.originalRaycast = _G.originalRaycast or workspace.Raycast
+local originalRaycast = _G.originalRaycast
+
+
+local workspacemt
+if getrawmetatable then workspacemt = getrawmetatable(workspace) end
+
 ---raycast overwrite setup
 _G.pceos_mousepos = nil
 if workspacemt then
