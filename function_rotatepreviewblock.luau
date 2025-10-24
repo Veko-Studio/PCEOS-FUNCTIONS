@@ -8,7 +8,7 @@ end
 function _G.rotatepreviewblock(cframe)
     ---getting the preview and checking if it exists
     local preview = workspace.Camera.BuildObjects:FindFirstChildOfClass("Model")
-    if not (ac and preview) then return end
+    if not preview then return end
     ---main code
     for i=1,2 do --loop since it needs to run twice to get to the correct rotation for some reason
         ---getting preview rotation
