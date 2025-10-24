@@ -1,3 +1,7 @@
+local function checkstatus(ID)
+    repeat task.wait() until workspace.Camera.BuildObjects:FindFirstChildOfClass("Model")
+    return workspace.Camera.BuildObjects:FindFirstChildOfClass("Model").ID.Value ~= ID
+end
 local function setblock(id)
 	game:GetService("Players").LocalPlayer.PlayerGui.BuildGUI2.Bindables.BlockSelected:Fire(id)
 end
