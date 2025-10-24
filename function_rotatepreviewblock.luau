@@ -40,6 +40,7 @@ function _G.rotatepreviewblock(cframe)
             end)
         end
     end
-    if i == 1 and preview_rot_result~=Vector3.new(0,0,0) then task.wait(0.25) end --wait to let the tweens finish so the second run doesn't get the mid tween values
+    if preview_rot_result==Vector3.new(0,0,0) then return end
+    if i == 1 then task.wait(0.25) end --wait to let the tweens finish so the second run doesn't get the mid tween values
 end
 --_G.rotatepreviewblock(cframe)
