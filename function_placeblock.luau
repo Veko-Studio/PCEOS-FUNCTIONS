@@ -13,31 +13,14 @@ local function GetZone(player)
     end
     return zone
 end
-----
-local blockdef = require(game:GetService("ReplicatedStorage").ModuIes.BlockDef)
-----
-local realmath = math
-math = {}
-
--- Copy everything from the original math
-for k, v in pairs(realmath) do
-    math[k] = v
-end
-math.trunc = function(n)
-    if n > 0 then
-        return realmath.floor(n)
-    else
-        return realmath.ceil(n)
-    end
-end
-----
-
 
 
 function _G.placeblock(id,position,rotation)
     local plotpos = PlotVecToGlobalVec(position,GetZone(game.Players.LocalPlayer))
     _G.selectpreviewblock(id)
     _G.positionpreviewblock(plotpos)
+    _G.rotatepreviewblock(rotation)
+    task.wait()
     _G.rotatepreviewblock(rotation)
     task.wait()
     _G.placepreviewblock(rotation)
