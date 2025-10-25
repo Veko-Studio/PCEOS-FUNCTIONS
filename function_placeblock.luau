@@ -35,10 +35,10 @@ end
 
 
 function _G.placeblock(id,position,rotation,realcenter)
-    _G.rotatepreviewblock(rotation)
     local plotpos = PlotVecToGlobalVec(position,GetZone(game.Players.LocalPlayer))
     _G.selectpreviewblock(id)
     _G.positionpreviewblock(plotpos)
+    _G.rotatepreviewblock(rotation)
 
 
     local model = workspace.Camera.BuildObjects:FindFirstChildOfClass("Model")
