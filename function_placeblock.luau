@@ -44,7 +44,7 @@ function _G.placeblock(id,position,rotation,realcenter)
     local model = workspace.Camera.BuildObjects:FindFirstChildOfClass("Model")
     if realcenter then
             local box = model:FindFirstChild("HitBox") or model:FindFirstChild("SelectionBoxPart")
-            if box.Size ~= boxvec then
+            if box.Size ~= Vector3.new(2.6, 2.6, 2.6) then
                 local g_offset_wrong = (blockdef[id].Offset)
                 print("g_offset_wrong:",g_offset_wrong)
                 local g_offset = Vector3.new(
