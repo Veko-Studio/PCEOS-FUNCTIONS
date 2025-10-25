@@ -60,7 +60,7 @@ function _G.placeblock(id,position,rotation,realcenter)
             end
         end
 
-
+    task.wait()
     _G.placepreviewblock(rotation)
     task.wait(0.1) --place block rate limit fix
     _G.positionpreviewblock(nil)
