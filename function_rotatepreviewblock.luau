@@ -42,19 +42,19 @@ function _G.rotatepreviewblock(cframe)
         ---applying the presses
         local buttons = game:GetService("Players").LocalPlayer.PlayerGui.BuildGUI2.Utilitybar2.Utilitybar2.BuildButtons
         for i=1,preview_rot_result.X do
-            --task.spawn(function()
+            task.spawn(function()
                 envbuild.RotateBlock(buttons.T, "X")
-            --end)
+            end)
         end
         for i=1,preview_rot_result.Y do
-            --task.spawn(function()
-            envbuild.RotateBlock(buttons.R, "Y")
-            --end)
+            task.spawn(function()
+            	envbuild.RotateBlock(buttons.R, "Y")
+            end)
         end
         for i=1,preview_rot_result.Z do
-            --task.spawn(function()
+            task.spawn(function()
                 envbuild.RotateBlock(buttons:FindFirstChild("Y") or buttons.Z, "Z")
-            --end)
+        	end)
         end
         --if preview_rot_result==Vector3.new(0,0,0) then return end
         if i == 1 then task.wait(0.25) end --wait to let the tweens finish so the second run doesn't get the mid tween values
