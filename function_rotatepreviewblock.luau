@@ -4,24 +4,21 @@ local envbuild = getsenv(game:GetService("Players").LocalPlayer.PlayerGui.BuildG
 local function numround(numb)
     return math.round(numb / 90)
 end
-local function angleDifference(a, b)
-	local diff = math.abs(a - b) % (2 * math.pi)
-	if diff > math.pi then
-		diff = 2 * math.pi - diff
-	end
-	return diff
-end
-local function checkcorrect(preview,cframe)
-   ---already correct rot check
-    local _, _, previewRot = preview.PrimaryPart.CFrame:ToOrientation()
-    local _, _, targetRot = cframe:ToOrientation()
+local function checkcorrect(preview, targetCFrame)
+    local previewCFrame = preview.PrimaryPart.CFrame
+
+    -- Compute the rotational difference CFrame
+    local delta = previewCFrame:ToObjectSpace(targetCFrame)
+
+    -- Extract axis-angle from delta
+    local _, _, _, m00, m01, m02, m10, m11, m12, m20, m21, m22 = delta:GetComponents()
+
+    -- Calculate the angle between orientations using trace of rotation matrix
+    local trace = m00 + m11 + m22
+    local angle = math.acos(math.clamp((trace - 1) / 2, -1, 1))
 
     local tolerance = math.rad(1)
-
-    if angleDifference(previewRot, targetRot) <= tolerance then
-    	return true
-    end 
-    return false
+    return angle <= tolerance
 end
 --function itself
 function _G.rotatepreviewblock(cframe)
