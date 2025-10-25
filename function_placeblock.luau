@@ -15,11 +15,16 @@ local function GetZone(player)
 end
 
 function _G.placeblock(id,position,rotation)
-    _G.rotatepreviewblock(rotation)
     local plotpos = PlotVecToGlobalVec(position,GetZone(game.Players.LocalPlayer))
     _G.selectpreviewblock(id)
+    _G.rotatepreviewblock(rotation)
+    task.wait(0.25)
+    _G.rotatepreviewblock(rotation)
+    task.wait(0.25)
+    _G.rotatepreviewblock(rotation)
+    task.wait(0.25)
     _G.positionpreviewblock(plotpos)
-    _G.placepreviewblock(rotation)
+    _G.placepreviewblock()
     task.wait(0.1) --place block rate limit fix
     _G.positionpreviewblock(nil)
 end
@@ -33,10 +38,10 @@ for x=1,5 do
             local id = 5
             local position = Vector3.new(x-26,y,z-26)
             local rotation = CFrame.Angles(math.deg(y*90),0,0)
-            placeblock(id,position,rotation,false)
+            placeblock(id,position,rotation)
         end
     end
 end
 --example2:
-_G.placeblock(16,Vector3.new(0,1,0),CFrame.Angles(0,0,0),true)
+_G.placeblock(16,Vector3.new(0,1,0),CFrame.Angles(0,0,0))
 ]]
