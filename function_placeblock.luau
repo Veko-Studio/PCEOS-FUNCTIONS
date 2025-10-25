@@ -25,3 +25,4 @@ function _G.placeblock(id,position,rotation)
 end
 
 --_G.placeblock(id,position,rotation)
+--⚠🟨roblox gets buggy if you loadstring this at the moment🟨⚠
