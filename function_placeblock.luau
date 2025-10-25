@@ -82,4 +82,4 @@ function _G.placeblock(id,position,rotation,forcecenter)
     _G.positionpreviewblock(nil)
 end
 --_G.placeblock(id,position,rotation,forcecenter)
---⚠🟨roblox gets buggy if you loadstring this at the moment🟨⚠
+--⚠🟨rotation gets buggy if you loadstring this at the moment🟨⚠
