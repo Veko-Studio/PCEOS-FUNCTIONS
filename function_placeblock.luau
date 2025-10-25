@@ -16,9 +16,9 @@ end
 
 
 function _G.placeblock(id,position,rotation)
+    _G.rotatepreviewblock(rotation)
     local plotpos = PlotVecToGlobalVec(position,GetZone(game.Players.LocalPlayer))
     _G.selectpreviewblock(id)
-    _G.rotatepreviewblock(rotation)
     _G.positionpreviewblock(plotpos)
     _G.placepreviewblock(rotation)
     task.wait(0.1) --place block rate limit fix
