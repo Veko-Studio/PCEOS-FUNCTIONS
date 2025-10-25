@@ -25,18 +25,3 @@ function _G.placeblock(id,position,rotation)
 end
 
 --_G.placeblock(id,position,rotation)
---[[
---example1:
-for x=1,5 do
-    for y=1,3 do
-        for z=1,5 do
-            local id = 5
-            local position = Vector3.new(x-26,y,z-26)
-            local rotation = CFrame.Angles(math.deg(y*90),0,0)
-            placeblock(id,position,rotation)
-        end
-    end
-end
---example2:
-_G.placeblock(16,Vector3.new(0,1,0),CFrame.Angles(0,0,0))
-]]
