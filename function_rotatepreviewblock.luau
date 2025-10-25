@@ -24,14 +24,15 @@ function _G.rotatepreviewblock(cframe)
     	return
     end
     ---main code
-    for i=1,2 do --loop since it needs to run twice to get to the correct rotation for some reason
+	local preview_rot_result
+    repeat --loop since it needs to run a few times to get to the correct rotation for some reason
         ---getting preview rotation
         local previewpivot = preview.PrimaryPart.CFrame * cframe:Inverse() --adding cframe offset so that it goes to the needed rotation instead of 0 0 0
         local preview_rot_x,preview_rot_y,preview_rot_z = previewpivot:ToOrientation()
         local preview_rot = Vector3.new(math.deg(preview_rot_x), math.deg(preview_rot_y), math.deg(preview_rot_z))
         ---reformating it into info ususable for the presses
         local preview_rot_rounded_flipped = Vector3.new(numround(-preview_rot.X),numround(-preview_rot.Y),numround(-preview_rot.Z))
-        local preview_rot_result = Vector3.new(
+        preview_rot_result = Vector3.new(
             math.abs(preview_rot_rounded_flipped.X) * 3,
             math.abs(preview_rot_rounded_flipped.Y) * 3,
             math.abs(preview_rot_rounded_flipped.Z) * 3
@@ -53,8 +54,10 @@ function _G.rotatepreviewblock(cframe)
                 envbuild.RotateBlock(buttons:FindFirstChild("Y") or buttons.Z, "Z")
         	end)
         end
+		task.wait(0.25)
         --if preview_rot_result==Vector3.new(0,0,0) then return end
-        if i == 1 then task.wait(0.25) end --wait to let the tweens finish so the second run doesn't get the mid tween values
+        --if i == 1 then task.wait(0.25) end --wait to let the tweens finish so the second run doesn't get the mid tween values
+		until preview_rot_result==Vector3.new(0,0,0)
     end
 end
 --_G.rotatepreviewblock(cframe)
