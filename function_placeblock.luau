@@ -34,32 +34,11 @@ end
 
 
 
-function _G.placeblock(id,position,rotation,realcenter)
+function _G.placeblock(id,position,rotation)
     local plotpos = PlotVecToGlobalVec(position,GetZone(game.Players.LocalPlayer))
     _G.selectpreviewblock(id)
     _G.positionpreviewblock(plotpos)
     _G.rotatepreviewblock(rotation)
-
-
-    local model = workspace.Camera.BuildObjects:FindFirstChildOfClass("Model")
-    if realcenter then
-            local box = model:FindFirstChild("HitBox") or model:FindFirstChild("SelectionBoxPart")
-            if box.Size ~= Vector3.new(2.6, 2.6, 2.6) then
-                local g_offset_wrong = (blockdef[id].Offset)
-                print("g_offset_wrong:",g_offset_wrong)
-                local g_offset = Vector3.new(
-                math.trunc(g_offset_wrong.X),
-                math.trunc(g_offset_wrong.Y),
-                math.trunc(g_offset_wrong.Z))*1.25--g_offset_wrong.X
-                print("g_offset:",g_offset)
-                local pivot = model:GetPivot()
-                local rotonly = CFrame.new(Vector3.new(0, 0, 0)) * CFrame.fromMatrix(Vector3.new(), pivot:vectorToWorldSpace(Vector3.new(1,0,0)), pivot:vectorToWorldSpace(Vector3.new(0,1,0)), pivot:vectorToWorldSpace(Vector3.new(0,0,1)))
-                local offset = (rotonly * CFrame.new(g_offset)).Position
-                print("offset",offset)
-                _G.pceos_mousepos = _G.pceos_mousepos-offset
-            end
-        end
-
     task.wait()
     _G.placepreviewblock(rotation)
     task.wait(0.1) --place block rate limit fix
