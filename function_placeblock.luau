@@ -14,7 +14,7 @@ local function GetZone(player)
     return zone
 end
 
-local function _G.placeblock(id,position,rotation)
+function _G.placeblock(id,position,rotation)
     _G.rotatepreviewblock(rotation)
     local plotpos = PlotVecToGlobalVec(position,GetZone(game.Players.LocalPlayer))
     _G.selectpreviewblock(id)
