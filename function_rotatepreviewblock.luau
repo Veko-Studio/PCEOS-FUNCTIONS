@@ -25,7 +25,7 @@ function _G.rotatepreviewblock(cframe)
         local tolerance = math.rad(1)
          
         
-        if angleDifference(previewRot, targetRot) <= tolerance then
+        if false and angleDifference(previewRot, targetRot) <= tolerance then
         	return
         end
         ---getting preview rotation
