@@ -26,7 +26,7 @@ function _G.placepreviewblock()
 	for _, des in game.Players.LocalPlayer.PlayerGui:GetDescendants() do
 		if des:IsA("ScreenGui") then table.insert(screenguis,{des,des.Enabled}) end
 	end
-	repeat task.wait() until game.CoreGui
+	repeat task.wait() until game:FindFirstChild("CoreGui")
 	for _, des in game.CoreGui:GetDescendants() do
 		if des:IsA("ScreenGui") then table.insert(screenguis,{des,des.Enabled}) end
 	end
