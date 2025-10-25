@@ -4,6 +4,25 @@ local envbuild = getsenv(game:GetService("Players").LocalPlayer.PlayerGui.BuildG
 local function numround(numb)
     return math.round(numb / 90)
 end
+local function angleDifference(a, b)
+	local diff = math.abs(a - b) % (2 * math.pi)
+	if diff > math.pi then
+		diff = 2 * math.pi - diff
+	end
+	return diff
+end
+local function checkcorrect(preview,cframe)
+   ---already correct rot check
+    local _, _, previewRot = preview.PrimaryPart.CFrame:ToOrientation()
+    local _, _, targetRot = cframe:ToOrientation()
+
+    local tolerance = math.rad(1)
+
+    if angleDifference(previewRot, targetRot) <= tolerance then
+    	return true
+    end 
+    return false
+end
 --function itself
 function _G.rotatepreviewblock(cframe)
     ---getting the preview and checking if it exists
@@ -11,6 +30,7 @@ function _G.rotatepreviewblock(cframe)
     if not preview then return end
     ---main code
     for i=1,2 do --loop since it needs to run twice to get to the correct rotation for some reason
+        if checkcorrect(preview,cframe) then return end
         ---getting preview rotation
         local previewpivot = preview.PrimaryPart.CFrame * cframe:Inverse() --adding cframe offset so that it goes to the needed rotation instead of 0 0 0
         local preview_rot_x,preview_rot_y,preview_rot_z = previewpivot:ToOrientation()
