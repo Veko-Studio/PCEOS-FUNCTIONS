@@ -34,9 +34,9 @@ function _G.placepreviewblock()
 	for _, gui in screenguis do
 		gui[1].Enabled = false
 	end
-
+	task.wait()
 	clicksteps()
-
+	task.wait()
 	for _, gui in screenguis do
 		gui[1].Enabled = gui[2]
 	end
