@@ -41,12 +41,12 @@ end
 function _G.placeblock(id,position,rotation,forcecenter)
     _G.selectpreviewblock(id)
     _G.rotatepreviewblock(rotation)
-    task.wait(0.25)
+    task.wait()
 
 
     local model = workspace.Camera.BuildObjects:FindFirstChildOfClass("Model")
     local box = model:FindFirstChild("HitBox") or model:FindFirstChild("SelectionBoxPart")
-    local boxvec = Vector3.new(2.5, 2.5, 2.5)
+    local boxvec = Vector3.new(2.55, 2, 2.55)
     local plotpos = position
     if box.Size.X <= boxvec.X and box.Size.Y <= boxvec.Y  and box.Size.Z <= boxvec.Z then
         plotpos = Vector3.new(math.round(position.X),math.round(position.Y+0.1),math.round(position.Z))
@@ -58,9 +58,10 @@ function _G.placeblock(id,position,rotation,forcecenter)
     plotpos = PlotVecToGlobalVec(plotpos,GetZone(game.Players.LocalPlayer))
 
     _G.positionpreviewblock(plotpos)
+    task.wait()
 
     if forcecenter then
-        if box.Size ~= boxvec then
+        --if box.Size ~= boxvec then
             local g_offset_wrong = (blockdef[id].Offset)
             print("g_offset_wrong:",g_offset_wrong)
             local g_offset = Vector3.new(
@@ -72,13 +73,13 @@ function _G.placeblock(id,position,rotation,forcecenter)
             local rotonly = CFrame.new(Vector3.new(0, 0, 0)) * CFrame.fromMatrix(Vector3.new(), pivot:vectorToWorldSpace(Vector3.new(1,0,0)), pivot:vectorToWorldSpace(Vector3.new(0,1,0)), pivot:vectorToWorldSpace(Vector3.new(0,0,1)))
             local offset = (rotonly * CFrame.new(g_offset)).Position
             print("offset",offset)
-            _G.pceos_mousepos = _G.pceos_mousepos-offset
-        end
+            _G.positionpreviewblock(_G.pceos_mousepos-offset)
+        --end
     end
     showshortpreview(_G.pceos_mousepos,Color3.fromRGB(255,204,0))
-    _G.placepreviewblock()
-
     task.wait(0.1) --place block rate limit fix
+    _G.placepreviewblock()
+    task.wait()
     _G.positionpreviewblock(nil)
 end
 --_G.placeblock(id,position,rotation,forcecenter)
