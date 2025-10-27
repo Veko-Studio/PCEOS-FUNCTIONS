@@ -40,8 +40,8 @@ function _G.rotatepreviewblock(cframe)
             math.abs(preview_rot_rounded_flipped.Z) * 3
         )
         ---removing tweens
-        _G.origtween = envbuild.TweenModelCFrame
-        envbuild.TweenModelCFrame = function(...) print(...) end
+        _G.origtween = _G.origtween or envbuild.TweenModelCFrame
+        envbuild.TweenModelCFrame = function(...) end
         ---applying the presses
         local buttons = game:GetService("Players").LocalPlayer.PlayerGui.BuildGUI2.Utilitybar2.Utilitybar2.BuildButtons
         for i=1,preview_rot_result.X do
@@ -63,6 +63,5 @@ function _G.rotatepreviewblock(cframe)
     end
     --adding tweens
     envbuild.TweenModelCFrame = _G.origtween
-    _G.origtween = nil
 end
 --_G.rotatepreviewblock(cframe)
