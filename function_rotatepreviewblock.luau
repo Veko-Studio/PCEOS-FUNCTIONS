@@ -26,7 +26,7 @@ function _G.rotatepreviewblock(cframe)
     local preview = workspace.Camera.BuildObjects:FindFirstChildOfClass("Model")
     if not preview then return end
     ---main code
-    for i=1,5 do --loop since it needs to run twice to get to the correct rotation for some reason
+    for i=1,10 do --loop since it needs to run twice to get to the correct rotation for some reason
         if checkcorrect(preview,cframe) then return end
         ---getting preview rotation
         local previewpivot = preview.PrimaryPart.CFrame * cframe:Inverse() --adding cframe offset so that it goes to the needed rotation instead of 0 0 0
