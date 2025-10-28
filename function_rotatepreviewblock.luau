@@ -25,6 +25,9 @@ function _G.rotatepreviewblock(cframe)
     ---getting the preview and checking if it exists
     local preview = workspace.Camera.BuildObjects:FindFirstChildOfClass("Model")
     if not preview then return end
+    ---removing tweens
+    local origtween = envbuild.TweenModelCFrame
+    envbuild.TweenModelCFrame = function(...) end
     ---main code
     for i=1,7 do --loop since it needs to run twice to get to the correct rotation for some reason
         if checkcorrect(preview,cframe) then return end
@@ -39,9 +42,6 @@ function _G.rotatepreviewblock(cframe)
             math.abs(preview_rot_rounded_flipped.Y) * 3,
             math.abs(preview_rot_rounded_flipped.Z) * 3
         )
-        ---removing tweens
-        _G.origtween = _G.origtween or envbuild.TweenModelCFrame
-        envbuild.TweenModelCFrame = function(...) end
         ---applying the presses
         local buttons = game:GetService("Players").LocalPlayer.PlayerGui.BuildGUI2.Utilitybar2.Utilitybar2.BuildButtons
         for i=1,preview_rot_result.X do
@@ -56,6 +56,6 @@ function _G.rotatepreviewblock(cframe)
         task.wait()
     end
     --adding tweens
-    envbuild.TweenModelCFrame = _G.origtween
+    envbuild.TweenModelCFrame = origtween
 end
 --_G.rotatepreviewblock(cframe)
