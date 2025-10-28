@@ -1,6 +1,5 @@
 local Players = game:GetService("Players")
 local VirtualInputManager = game:GetService("VirtualInputManager")
-local UserInputService = game:GetService("UserInputService")
 local CoreGui = game:GetService("CoreGui")
 
 local player = Players.LocalPlayer
@@ -13,7 +12,6 @@ local function isPositionBlockedByGui(x, y)
             if gui and gui.Visible then
                 local ancestor = gui:FindFirstAncestorWhichIsA("ScreenGui")
                 if ancestor and ancestor.Enabled then
-                    -- Ignore invisible or non-interactive guis
                     if not ancestor.IgnoreGuiInset and not ancestor.ResetOnSpawn then
                         return true
                     end
@@ -36,16 +34,23 @@ end
 -- Find an on-screen position with no GUI obstruction
 local function findClearPosition()
     local viewport = camera.ViewportSize
+    local centerX, centerY = viewport.X / 2, viewport.Y / 2
+
+    -- 1️⃣ Try the center first
+    if not isPositionBlockedByGui(centerX, centerY) then
+        return centerX, centerY
+    end
+
+    -- 2️⃣ Otherwise, check other common positions
     local testPositions = {
-        {x = viewport.X / 2, y = viewport.Y / 2}, -- center first
         {x = 50, y = 50},
         {x = viewport.X - 50, y = 50},
         {x = 50, y = viewport.Y - 50},
         {x = viewport.X - 50, y = viewport.Y - 50},
-        {x = viewport.X / 2, y = 50},
-        {x = viewport.X / 2, y = viewport.Y - 50},
-        {x = 50, y = viewport.Y / 2},
-        {x = viewport.X - 50, y = viewport.Y / 2},
+        {x = centerX, y = 50},
+        {x = centerX, y = viewport.Y - 50},
+        {x = 50, y = centerY},
+        {x = viewport.X - 50, y = centerY},
     }
 
     for _, pos in ipairs(testPositions) do
@@ -54,7 +59,7 @@ local function findClearPosition()
         end
     end
 
-    -- fallback random search
+    -- 3️⃣ Random fallback search
     for _ = 1, 25 do
         local rx, ry = math.random(30, viewport.X - 30), math.random(30, viewport.Y - 30)
         if not isPositionBlockedByGui(rx, ry) then
@@ -62,8 +67,8 @@ local function findClearPosition()
         end
     end
 
-    -- nothing found, just center
-    return viewport.X / 2, viewport.Y / 2
+    -- 4️⃣ Nothing found — return center anyway
+    return centerX, centerY
 end
 
 -- Click at a clear screen position
@@ -75,5 +80,7 @@ function _G.placepreviewblock()
     task.wait(0.05)
     VirtualInputManager:SendMouseButtonEvent(x, y, 0, false, game, 0)
 end
+
+
 
 --_G.placepreviewblock()
