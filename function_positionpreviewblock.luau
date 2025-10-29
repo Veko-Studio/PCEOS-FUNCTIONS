@@ -40,7 +40,7 @@ if workspacemt then
                     end
                     if _G.pceos_mousepos then
                         newPosition = _G.pceos_mousepos-Vector3.new(0,2.5,0)
-                        newnormal = Vector3.new(0, -1, 0)
+                        newnormal = Vector3.new(0, 0, 0)
                         workspace:FindFirstChild("PCEOS_MOUSE_OVEWRITE").Position = _G.pceos_mousepos
                     end
                     -- Return a modified RaycastResult
