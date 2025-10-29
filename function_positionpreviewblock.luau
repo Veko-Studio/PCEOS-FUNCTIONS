@@ -44,7 +44,7 @@ if workspacemt then
                         workspace:FindFirstChild("PCEOS_MOUSE_OVEWRITE").Position = _G.pceos_mousepos
                     end
                     -- Return a modified RaycastResult
-                    print(result.Normal)
+                    --print(result.Normal)
                     return {
                         Instance = result.Instance,
                         Position = newPosition or result.Position,
