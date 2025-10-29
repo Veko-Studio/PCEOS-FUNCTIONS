@@ -75,9 +75,9 @@ end
 function _G.placepreviewblock()
     local x, y = findClearPosition()
     VirtualInputManager:SendMouseMoveEvent(x, y, game)
-    task.wait(0.05)
+    --task.wait(0.05)
     VirtualInputManager:SendMouseButtonEvent(x, y, 0, true, game, 0)
-    task.wait(0.05)
+    --task.wait(0.05)
     VirtualInputManager:SendMouseButtonEvent(x, y, 0, false, game, 0)
 end
 
