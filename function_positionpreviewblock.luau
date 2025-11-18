@@ -46,11 +46,11 @@ local raycastWrapper = newcclosure(function(selfArg, origin, direction, raycastP
     
     if result then
         -- Print original result
-        print("=== ORIGINAL RAYCAST RESULT ===")
-        print("Instance:", result.Instance)
-        print("Position:", result.Position)
-        print("Normal:", result.Normal)
-        print("Material:", result.Material)
+        --print("=== ORIGINAL RAYCAST RESULT ===")
+        --print("Instance:", result.Instance)
+        --print("Position:", result.Position)
+        --print("Normal:", result.Normal)
+        --print("Material:", result.Material)
         
         -- Offset the hit position by +5 on the X axis
         local Players = game:GetService("Players")
@@ -77,12 +77,12 @@ local raycastWrapper = newcclosure(function(selfArg, origin, direction, raycastP
         end
         
         -- Print modified result
-        print("=== MODIFIED RAYCAST RESULT ===")
-        print("Instance:", result.Instance)
-        print("Position:", newPosition or result.Position)
-        print("Normal:", newnormal or result.Normal)
-        print("Material:", result.Material)
-        print("===============================\n")
+        --print("=== MODIFIED RAYCAST RESULT ===")
+        --print("Instance:", result.Instance)
+        --print("Position:", newPosition or result.Position)
+        --print("Normal:", newnormal or result.Normal)
+        --print("Material:", result.Material)
+        --print("===============================\n")
         
         -- Return a modified RaycastResult
         return {
