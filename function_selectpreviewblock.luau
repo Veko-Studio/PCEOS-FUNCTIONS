@@ -11,9 +11,6 @@ end
 function _G.selectpreviewblock(BlockID)
   local ID = BlockID
   game:GetService("Players").LocalPlayer.PlayerGui.BuildGui.EnableBuilding:Fire()
-  repeat
-	task.wait()
-    e(ID)
-  until checkstatus(ID)
+  e(ID)
+  task.wait(0.1)
 end
---_G.selectpreviewblock(BlockID)
