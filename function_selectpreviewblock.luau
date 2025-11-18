@@ -4,11 +4,11 @@ local function checkstatus(ID)
 end
 local function e(ID)
     local blockdef = require(game:GetService("ReplicatedStorage").ModuIes.BlockDef)
-    game:GetService("Players").LocalPlayer.PlayerGui.BuildGUI2.Bindables.CategoryPressed:Fire(blockdef[ID].Category)
     
     -- Keep retrying until button exists
     local button
     repeat
+        game:GetService("Players").LocalPlayer.PlayerGui.BuildGUI2.Bindables.CategoryPressed:Fire(blockdef[ID].Category)
         button = game:GetService("Players").LocalPlayer.PlayerGui.BuildGUI2.BuildMenu:FindFirstChild(tostring(ID), true)
         if not button then
             task.wait() -- Wait a short time before retrying
