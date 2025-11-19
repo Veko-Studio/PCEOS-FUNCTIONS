@@ -200,7 +200,7 @@ local function e(ID)
                         repeat
                             task.wait()
                             clickThroughOverlays(game:GetService("Players").LocalPlayer.PlayerGui.BuildGUI2.ResizeMenu.Container.Right)
-                        until workspace.Camera.BuildObjects:FindFirstAncestorOfClass("Model").ID.Value
+                        until workspace.Camera.BuildObjects:FindFirstAncestorOfClass("Model") and workspace.Camera.BuildObjects:FindFirstAncestorOfClass("Model").ID.Value
                     end
                     return
                 else
