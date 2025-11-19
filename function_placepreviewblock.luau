@@ -57,6 +57,7 @@ local function clickThroughPosition(x, y)
     -- Click the target
     VirtualInputManager:SendMouseButtonEvent(x, y, 0, true, game, 1)
     VirtualInputManager:SendMouseButtonEvent(x, y, 0, false, game, 1)
+    VirtualInputManager:SendMouseButtonEvent(x, y, 0, false, game, 1)
 
     -- Re-enable the GUIs
     for i = 1, count do
