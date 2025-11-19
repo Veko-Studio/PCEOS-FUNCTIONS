@@ -4,7 +4,39 @@ local CoreGui = game:GetService("CoreGui")
 
 local player = Players.LocalPlayer
 local camera = workspace.CurrentCamera
+function flashCircle(position)
+    -- Create the container ScreenGui
+    local gui = Instance.new("ScreenGui")
+    gui.Name = "FlashCircleGUI"
+    gui.ResetOnSpawn = false
+    gui.IgnoreGuiInset = true
+    gui.Parent = CoreGui
 
+    -- Create the red circle
+    local circle = Instance.new("Frame")
+    circle.Size = UDim2.fromOffset(40, 40)
+    circle.Position = UDim2.fromOffset(position.X - 20, position.Y - 20)
+    circle.BackgroundColor3 = Color3.new(1, 0, 0)
+    circle.BackgroundTransparency = 0
+    circle.BorderSizePixel = 0
+    circle.AnchorPoint = Vector2.new(0.5, 0.5)
+    circle.Parent = gui
+
+    local corner = Instance.new("UICorner")
+    corner.CornerRadius = UDim.new(1, 0)
+    corner.Parent = circle
+
+    -- Fade-out tween
+    local tween = TweenService:Create(circle, TweenInfo.new(1, Enum.EasingStyle.Quad), {
+        BackgroundTransparency = 1
+    })
+    tween:Play()
+
+    -- Cleanup after 1 second
+    task.delay(1, function()
+        gui:Destroy()
+    end)
+end
 -- Check if a position on the screen is blocked by visible, active GUI
 local function isPositionBlockedByGui(x, y)
     local function checkGuiList(guiList)
@@ -79,6 +111,7 @@ function _G.placepreviewblock()
     VirtualInputManager:SendMouseButtonEvent(x, y, 0, true, game, 0)
     --task.wait(0.05)
     VirtualInputManager:SendMouseButtonEvent(x, y, 0, false, game, 0)
+    flashCircle(Vector2.new(x,y)
 end
 
 
