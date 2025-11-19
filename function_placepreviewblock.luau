@@ -111,7 +111,7 @@ function _G.placepreviewblock()
     VirtualInputManager:SendMouseButtonEvent(x, y, 0, true, game, 0)
     --task.wait(0.05)
     VirtualInputManager:SendMouseButtonEvent(x, y, 0, false, game, 0)
-    flashCircle(Vector2.new(x,y)
+    flashCircle(Vector2.new(x,y))
 end
 
 
