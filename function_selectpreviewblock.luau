@@ -155,6 +155,7 @@ function clickThroughOverlays(guiObject)
     local x2,y2 = x+20,y+80
     VIM:SendMouseButtonEvent(x2, y2, 0, true, guiObject, 1)
     VIM:SendMouseButtonEvent(x2, y2, 0, false, guiObject, 1)
+    VIM:SendMouseButtonEvent(x2, y2, 0, false, guiObject, 1)
     flashCircle(Vector2.new(x2, y2))
     
     for i = 1, count do
