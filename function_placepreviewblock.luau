@@ -1,7 +1,7 @@
 local Players = game:GetService("Players") 
 local VirtualInputManager = game:GetService("VirtualInputManager")
 local CoreGui = game:GetService("CoreGui")
-
+local TweenService = game:GetService("TweenService")
 local player = Players.LocalPlayer
 local camera = workspace.CurrentCamera
 function flashCircle(position)
