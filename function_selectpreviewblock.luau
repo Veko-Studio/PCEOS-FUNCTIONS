@@ -213,5 +213,5 @@ function _G.selectpreviewblock(BlockID)
   local ID = BlockID
   game:GetService("Players").LocalPlayer.PlayerGui.BuildGui.EnableBuilding:Fire()
   e(ID)
-  task.wait(0.1)
+  task.wait(2)
 end
